@@ -1,0 +1,107 @@
+Implement Fantasy Combat Game
+
+ 
+
+Goals  
+Identify requirements for a program using polymorphism
+Create a program to demonstrate your class hierarchy
+ 
+
+Requirements
+
+In this project, you will create a simple class hierarchy as the basis for a fantasy combat game. Your ‘universe’ contains Vampires, Barbarians, Blue Men, Medusa and Harry Potter. Each has characteristics for attack, defense, armor, and strength points as follows.
+
+Type
+
+Attack
+
+Defense
+
+Armor
+
+Strength Points
+
+Vampire1
+
+1d12
+
+1d6* Charm
+
+1
+
+18
+
+Barbarian2   
+
+2d6
+
+2d6
+
+0
+
+12
+
+Blue Men3   
+
+2d10
+
+3d6
+
+3
+
+12 *Mob
+
+Medusa4   
+
+2d6* Glare
+
+1d6
+
+3
+
+8
+
+Harry Potter5   
+
+2d6
+
+2d6
+
+0
+
+10/20*Hogwarts
+
+Suave, debonair, but vicious and surprisingly resilient!
+Think Conan or Hercules from the movies. Big sword, big muscles, bare torso.
+They are small (6” tall), fast and tough. So they are hard to hit and can take some damage. As for the attack value, you can do a LOT of damage when you can crawl inside the armor or clothing of your opponent.
+Scrawny lady with snakes for hair. They help with fighting. Just don’t look at her!
+Why are you reading this? How can you not know who Harry Potter is?
+ 
+
+“3d6” is rolling three 6-sided dice, “2d10” is rolling two 10-sided dice, etc.
+
+*Charm: Vampires can charm an opponent into not attacking. For a given attack there is a 50% chance that their opponent does not actually attack them.
+
+*Glare: If a Medusa rolls a 12 in attack, then the target has looked her in the eyes and is turned to stone. The Medusa wins! If Medusa uses Glare on Harry Potter on his first life, then Harry Potter get back to life. If the Vampire's Charm ability activates versus Medusa's Glare, the Vampire's Charm trump the Glare.
+
+*Mob: The Blue Men are actually a swarm of small individuals. For every 4 points of damage (round down), they lose one defense die. For example, when they reach strength of 8 they only have 2d6 for defense.
+
+*Hogwarts: If Harry dies (i.e. strength <=0), he immediately recovers and his total strength becomes 20. If he were to die again, then he’s dead.
+
+NOTE: The sample creatures are unbalanced intentionally. This will help you in debugging your program! Some will win a lot, and others will lose a lot.
+
+ 
+
+To resolve an attack, you will need to generate 2 dice rolls, one roll for the attacker and another roll for the defender. The attacker rolls the appropriate number and type of dice under Attack. The defender rolls the appropriate number and type of dice under Defense. You will subtract the Defense roll from the Attack roll. That is the damage to the defender.
+
+Each class only has its own information or data. When O1 is fighting O2, your program should call O1’s attack function. It will return the damage inflicted. Then O2’s defense function will take the damage inflicted, roll the specified dice and subtract the damage points from the defense. To apply the damage, you subtract the Armor value. The result is then subtracted from the Strength Points. That value becomes O2’s new strength point for the next round.  If strength points go to 0 or less, then the character lose the combat. For example, if O2 receives 9 points of damage from O1 and rolls 3 for its defense, and has an armor of 4 and strength point of 8, it would take 9 subtract 3, and then subtract 4 to receive 2 points of damage, and its new strength point will be 8-2=6.  If the damage is a negative number, then no changes to the strength point.
+
+You need to create a Creature base class. Then you will have a subclass for each of these characters. Note that the Creature class will be an abstract class. For our purposes right now, each subclass will vary only in the values in the table. This means that there really isn't any difference between the creatures except for their perspective in the table, such as the dice sides, defense, strength points, etc. You can add whatever you want to the parent class. Though be warned, for example, if you have a checker to see if it is the medusa that is attacking and rolls a 12, this is not acceptable. This means that in the barbarian class (and all other classes other than the medusa class), you cannot check if the medusa is attacking and the roll is twelve, then medusa uses glare. Medusa must use glare FROM the medusa class. There should be no dependencies on which type of creature is attacking. It is part of your design task to determine what functions you will need.
+
+To play the game, write a menu. Display five fighters by their names and prompt the user to select two fighters to fight one another. Students must account for two fighters of the same type. So Harry Potter can fight Harry Potter, so on so forth. Randomly select one fighter to attack first. The fighters will take turns fighting each other until one's Strength point is zero or negative. Print the results of each round on the screen so you and your grading TA can verify it is what it is supposed to be (like round number, attack, defense, armor, the final strength points, specials used, etc.). Then display the winning fighter to the screen.  Ask users to play again or exit the game.  This is the first stage of a larger project. Please do not add any creatures of your own.
+
+ 
+
+You must include your design in your reflections document. In that document, you must discuss what the original design is, and how it changes as you worked through the problem. You must also include a test plan in that document. The test plan should cover all logic paths (you should have each character type have combat with all character types, including another of its own). The program has a random element. You will need to address that in your test plan.  It will also affect debugging. Your design should address this (potential) problem as well. Also, you need to show your test results with a brief discussion.  Remember to submit this document as PDF file. 
+
+ 
